@@ -5,6 +5,7 @@ from bridge.context import ContextType
 from bridge.reply import Reply, ReplyType
 from channel.chat_message import ChatMessage
 from common.log import logger
+from cus.job.DayJob import MyJob
 from plugins import *
 from config import conf
 
@@ -23,6 +24,7 @@ class Hello(Plugin):
         self.handlers[Event.ON_HANDLE_CONTEXT] = self.on_handle_context
         logger.info("[Hello] inited")
         self.config = super().load_config()
+        MyJob.__init__()
 
     def on_handle_context(self, e_context: EventContext):
         if e_context["context"].type not in [
